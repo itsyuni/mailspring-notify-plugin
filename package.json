@@ -1,0 +1,24 @@
+{
+  "name": "mailspring-notify-plugin",
+  "main": "./lib/main",
+  "version": "1.0.0",
+  "description": "Mute notifications for selected accounts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itsyuni/mailspring-notify-plugin"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "engines": {
+    "mailspring": ">=1.6.3"
+  },
+  "windowTypes": {
+    "default": true
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.14.69",
+    "typescript": "^3.9.10"
+  }
+}

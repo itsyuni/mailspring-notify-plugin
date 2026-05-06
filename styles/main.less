@@ -1,0 +1,103 @@
+@import "ui-variables";
+@import "ui-mixins";
+
+.mute-accounts-preferences {
+  padding: 20px 40px;
+
+  h2 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: @text-color;
+  }
+
+  .mute-accounts-description {
+    margin: 0 0 20px;
+    color: @text-color-subtle;
+    font-size: 13px;
+  }
+}
+
+.mute-accounts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 520px;
+}
+
+.mute-accounts-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: @background-secondary;
+  border-radius: 6px;
+  border: 1px solid @border-color-primary;
+}
+
+.mute-accounts-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.mute-accounts-email {
+  font-size: 13px;
+  font-weight: 500;
+  color: @text-color;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mute-accounts-label {
+  font-size: 11px;
+  color: @text-color-subtle;
+}
+
+// Toggle switch
+.mute-accounts-toggle {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  margin-left: 12px;
+  cursor: pointer;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+}
+
+.mute-accounts-toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: @border-color-primary;
+  border-radius: 20px;
+  transition: background 0.2s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s;
+  }
+}
+
+.mute-accounts-toggle input:checked + .mute-accounts-toggle-slider {
+  background: #4CAF50;
+}
+
+.mute-accounts-toggle input:checked + .mute-accounts-toggle-slider::before {
+  transform: translateX(16px);
+}
