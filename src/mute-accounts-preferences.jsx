@@ -2,14 +2,13 @@ import {
   React,
   AccountStore,
   PreferencesUIStore,
-  PreferencesUIStoreTab,
 } from "mailspring-exports";
 
-const STORAGE_KEY = "mailspring-mute-accounts-muted";
+const STORAGE_KEY = "mailspring-notify-plugin-muted";
 
 const STRINGS = {
   ru: {
-    "Mute Accounts": "Уведомления",
+    "Notifications": "Уведомления",
     "Choose which accounts send desktop notifications.": "Выберите аккаунты, для которых включены уведомления.",
   },
 };
@@ -64,7 +63,7 @@ class MuteAccountsPreferences extends React.Component {
     return (
       <div className="mute-accounts-preferences">
         <section>
-          <h2>{t("Mute Accounts")}</h2>
+          <h2>{t("Notifications")}</h2>
           <p className="mute-accounts-description">{t("Choose which accounts send desktop notifications.")}</p>
           <div className="mute-accounts-list">
             {accounts.map(account => {
@@ -95,10 +94,12 @@ class MuteAccountsPreferences extends React.Component {
   }
 }
 
+export default MuteAccountsPreferences;
+
 export function registerPreferencesTab() {
-  const tab = new PreferencesUIStoreTab({
-    tabId: "MuteAccounts",
-    displayName: t("Mute Accounts"),
+  const tab = new PreferencesUIStore.TabItem({
+    tabId: "NotifyPlugin",
+    displayName: t("Notifications"),
     componentClassFn: () => MuteAccountsPreferences,
     order: 999,
   });
