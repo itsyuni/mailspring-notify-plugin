@@ -22,7 +22,12 @@ async function _getAccountIdForThread(threadId) {
 export function activate() {
   _tab = registerPreferencesTab();
 
+  // NativeNotifications is a singleton object — patching its method directly
+  // works regardless of module load order because unread-notifications calls
+  // it as NativeNotifications.displayNotification(...) every time, not via
+  // a cached function reference.
   _originalDisplayNotification = NativeNotifications.displayNotification.bind(NativeNotifications);
+
   NativeNotifications.displayNotification = async function(opts) {
     const threadId = opts && opts.threadId;
     if (threadId) {
@@ -30,6 +35,11 @@ export function activate() {
       if (accountId && loadMuted()[accountId]) {
         return null;
       }
+    }
+    // Also check accountId if passed directly in opts (future-proof)
+    const directAccountId = opts && opts.accountId;
+    if (directAccountId && loadMuted()[directAccountId]) {
+      return null;
     }
     return _originalDisplayNotification(opts);
   };
